@@ -1,17 +1,18 @@
 {% extends "registration/registration_base.html" %}
+{% load material_form %}
 {% load i18n %}
-{% load crispy_forms_tags %}
+
 
 {% block title %}{% trans "Log in" %}{% endblock %}
 
 {% block content %}
-<form class="login-form" method="post" action="">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <br>
-    <button class="btn btn-default" type="submit" value="{% trans 'Log in' %}" style="background-color:#c52d2f;padding:5px 70px;color:#fff;" />{% trans 'Log in' %}
-    <input type="hidden" name="next" value="{% url 'home' %}" />
-</form>
+
+<form class="login-form" method="POST" id="info_form" action="">
+        {% csrf_token %}
+        {% form form=form %}{% endform %}
+        <button type="submit" name="_submit" class="btn">{% trans 'Log in' %}</button>
+        <input type="hidden" name="next" value="{% url 'home' %}" />
+    </form>
 
 
 {% endblock %}
